@@ -33,23 +33,138 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-      .block-container {padding-top: 2.1rem; padding-bottom: 3rem; max-width: 1440px;}
-      h1, h2, h3 {letter-spacing: -0.02em;}
-      .eyebrow {text-transform: uppercase; letter-spacing: .12em; font-size: .72rem;
-                color: #62748a; font-weight: 700; margin-bottom: .35rem;}
-      .lead {font-size: 1.07rem; line-height: 1.65; color: #425466; max-width: 980px;}
-      .finding {border: 1px solid #dce4ec; border-radius: 12px; padding: 1rem 1.1rem;
-                background: #fbfcfe; height: 100%;}
-      .finding-label {font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
-                      color: #62748a; font-weight: 700;}
-      .finding-value {font-size: 1.8rem; font-weight: 750; color: #12243a; margin: .25rem 0;}
-      .finding-detail {font-size: .91rem; color: #425466; line-height: 1.5;}
-      .note {font-size: .86rem; color: #64748b; line-height: 1.55;}
-      .section-rule {border: 0; border-top: 1px solid #e5eaf0; margin: 1.2rem 0;}
-      div[data-testid="stMetric"] {background: #fbfcfe; border: 1px solid #e1e8ef;
-        padding: .75rem .9rem; border-radius: 10px;}
-      .footer {color: #718096; font-size: .82rem; border-top: 1px solid #e5eaf0;
-               padding-top: 1rem; margin-top: 2rem;}
+      /* Keep the research showcase readable regardless of the viewer's OS theme. */
+      :root { color-scheme: light; }
+      [data-testid="stAppViewContainer"],
+      [data-testid="stMain"],
+      [data-testid="stMainBlockContainer"] {
+        background-color: #f5f8fc !important;
+        color: #1b2d40 !important;
+      }
+      [data-testid="stHeader"] {
+        background-color: rgba(245, 248, 252, 0.98) !important;
+      }
+      [data-testid="stSidebar"] {
+        background-color: #eaf0f6 !important;
+      }
+      [data-testid="stSidebar"] p,
+      [data-testid="stSidebar"] label,
+      [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+        color: #263d52 !important;
+      }
+
+      /* Extra clearance beneath Streamlit's toolbar prevents page headings clipping. */
+      .block-container {
+        padding-top: 3.6rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 1440px;
+      }
+      [data-testid="stMain"] h1,
+      [data-testid="stMain"] h2,
+      [data-testid="stMain"] h3,
+      [data-testid="stMain"] h4 {
+        color: #142a40 !important;
+        letter-spacing: -0.02em;
+      }
+      [data-testid="stMain"] p,
+      [data-testid="stMain"] li {
+        color: #293f54 !important;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: .12em;
+        font-size: .72rem;
+        color: #526b83 !important;
+        font-weight: 700;
+        margin-bottom: .45rem;
+      }
+      .lead {
+        font-size: 1.07rem;
+        line-height: 1.65;
+        color: #354d64 !important;
+        max-width: 980px;
+      }
+      .finding {
+        border: 1px solid #d7e0e9;
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        background: #ffffff !important;
+        height: 100%;
+      }
+      .finding-label {
+        font-size: .78rem;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: #526b83 !important;
+        font-weight: 700;
+      }
+      .finding-value {
+        font-size: 1.8rem;
+        font-weight: 750;
+        color: #142a40 !important;
+        margin: .25rem 0;
+      }
+      .finding-detail {
+        font-size: .91rem;
+        color: #354d64 !important;
+        line-height: 1.5;
+      }
+      .note, [data-testid="stCaptionContainer"] {
+        font-size: .86rem;
+        color: #5b7084 !important;
+        line-height: 1.55;
+      }
+      .section-rule {
+        border: 0;
+        border-top: 1px solid #dce4ec;
+        margin: 1.2rem 0;
+      }
+
+      /* Explicit foreground colours fix pale metric text on light metric cards. */
+      div[data-testid="stMetric"] {
+        background: #ffffff !important;
+        border: 1px solid #d7e0e9 !important;
+        color: #142a40 !important;
+        padding: .8rem .95rem;
+        border-radius: 10px;
+      }
+      [data-testid="stMetricLabel"],
+      [data-testid="stMetricLabel"] *,
+      [data-testid="stMetricValue"],
+      [data-testid="stMetricValue"] *,
+      [data-testid="stMetricDelta"] {
+        color: #142a40 !important;
+      }
+      [data-testid="stMetricLabel"] {
+        color: #526b83 !important;
+      }
+      [data-testid="stMetricValue"] {
+        font-size: 1.35rem !important;
+        line-height: 1.25 !important;
+        overflow-wrap: anywhere;
+      }
+
+      /* Keep controls and tables legible in the forced light presentation. */
+      div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        border-color: #cbd6e2 !important;
+        color: #1b2d40 !important;
+      }
+      input, textarea {
+        color: #1b2d40 !important;
+        background-color: #ffffff !important;
+      }
+      [data-testid="stDataFrame"] {
+        background-color: #ffffff !important;
+      }
+      .footer {
+        color: #5b7084 !important;
+        font-size: .82rem;
+        border-top: 1px solid #dce4ec;
+        padding-top: 1rem;
+        margin-top: 2rem;
+      }
+      .footer a { color: #245d86 !important; }
     </style>
     """,
     unsafe_allow_html=True,

@@ -84,6 +84,19 @@ st.markdown(
         color: #354d64 !important;
         max-width: 980px;
       }
+      .showcase-note {
+        margin-top: .85rem;
+        padding: .7rem .95rem;
+        border-left: 3px solid #9bb2c7;
+        border-radius: 0 8px 8px 0;
+        background: #edf2f7;
+        color: #52677b !important;
+        font-size: .88rem;
+        line-height: 1.55;
+      }
+      .showcase-note strong {
+        color: #344b60 !important;
+      }
       .finding {
         border: 1px solid #d7e0e9;
         border-radius: 12px;
@@ -446,6 +459,13 @@ if page == "Overview":
         "<div class='lead'>An empirical investigation of the relationship between geopolitical risk and "
         "Bitcoin conditional volatility, and whether Bitcoin volatility provides information about "
         "volatility in the South African equity market represented by the FTSE/JSE Capped All Share Index (J303).</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<div class='showcase-note'><strong>About this research showcase:</strong> "
+        "This application provides an interactive summary of the Honours research project. "
+        "It presents selected aspects of the research methodology, statistical analysis and findings. "
+        "It is intended as a complementary presentation of the research and does not constitute the full thesis document.</div>",
         unsafe_allow_html=True,
     )
     st.write("")

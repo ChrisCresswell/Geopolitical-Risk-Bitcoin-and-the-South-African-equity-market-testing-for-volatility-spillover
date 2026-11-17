@@ -1,0 +1,5 @@
+The original Thesis_Data.xlsx workbook is not part of this application package.
+It contains Bloomberg-derived Bitcoin, J303/index and USD/ZAR information.
+Do not add the workbook or raw daily financial observations to a public repository
+or public hosting service unless the relevant redistribution/display permissions
+have been confirmed. This app uses selected Script 9 output tables and thesis figures.

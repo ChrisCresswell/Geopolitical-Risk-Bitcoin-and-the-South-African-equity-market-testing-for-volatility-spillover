@@ -1,0 +1,3 @@
+"Asset","Model","Persistence","Ljung_Box_Residual_p","Ljung_Box_Squared_p","ARCH_LM_p","Nyblom_Joint","Nyblom_Joint_Critical_10pct","Nyblom_Joint_Critical_5pct","Nyblom_Joint_Critical_1pct"
+"Bitcoin","ARMA(0,0)-EGARCH(1,1)-t",0.9596,"<0.01","0.542","0.7796",2.6392,1.49,1.68,2.12
+"J303","ARMA(0,0)-EGARCH(1,1)-t",0.9727,"<0.01","0.1598","0.4715",2.8444,1.49,1.68,2.12

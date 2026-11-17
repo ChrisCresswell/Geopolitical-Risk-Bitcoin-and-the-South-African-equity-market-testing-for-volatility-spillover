@@ -1,0 +1,6 @@
+"Term","Full sample estimate","Full sample NW p-value","Post-2017 estimate","Post-2017 NW p-value"
+"J303 volatility, lag 1","0.9326","<0.01","0.9239","<0.01"
+"J303 volatility, lag 2","0.0356","0.5128","0.0428","0.5196"
+"Bitcoin volatility, current","0.0319","0.03235","0.0409","0.06628"
+"Bitcoin volatility, lag 1","-0.0279","0.09401","-0.0336","0.1575"
+"Bitcoin volatility, lag 2","-0.0028","0.5241","-0.0038","0.5022"

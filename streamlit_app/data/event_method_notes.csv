@@ -1,0 +1,8 @@
+"Item","Description"
+"Event identification","For each GPR measure and smoothing window, candidate peaks are identified and the five peaks with the greatest prominence are selected."
+"Smoothed event period","Each smoothed event period is defined from the preceding trough to the following trough. This period is distinct from the fixed peak-centred regression window."
+"Raw peak selection","The three highest observations from the unsmoothed GPR measure are selected within each event's fixed peak-centred regression window (News_Start_Row to News_End_Row)."
+"Episode source-code assignment","The source codes assigned to an episode describe the underlying stories associated with its own three selected raw peak days. Stories from other episodes or GPR measures are not added to that episode's codes."
+"Event analysis windows","Event regressions use fixed peak-centred windows containing exactly 11, 21, or 31 daily observations, matching the smoothing-window length."
+"Overlapping 31-day windows","The two 31-day GPRD windows centred on the May and June 2021 peaks overlap substantially (about two and a half weeks) and share top raw-peak days. Their event identifications are therefore not independent."
+"11-day Newey-West inference","With only 11 observations, Newey-West inference is treated as unreliable and should be interpreted descriptively rather than as strong inferential evidence."

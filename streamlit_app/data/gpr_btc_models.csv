@@ -1,0 +1,11 @@
+"Sample","Model","N","GPR_Lag0_Effect_pp_per_SD","GPR_Lag1_Effect_pp_per_SD","GPR_Lag2_Effect_pp_per_SD","GPR_Lag0_NW_P_Value","GPR_Lag1_NW_P_Value","GPR_Lag2_NW_P_Value","BTC_Volatility_Lag1_Coefficient","BTC_Volatility_Lag1_NW_P_Value","BTC_Volatility_Lag2_Coefficient","BTC_Volatility_Lag2_NW_P_Value","Adj_R2","Delta_R2","Joint_F_Statistic","Joint_Wald_P_Value"
+"Full sample","Volatility: No Lag",3111,-0.1181,,,"0.08472",,,,,,,0.0076,,,
+"Full sample","Volatility: 1 Lag",3111,-0.0451,-0.1118,,"0.3003","<0.01",,,,,,0.0114,,,
+"Full sample","Volatility: 2 Lags",3111,-0.0176,-0.0729,-0.0871,"0.6162","0.01153","0.01613",,,,,0.0133,,,
+"Full sample","Dynamic: BTC Volatility Lag1 + GPR Lags0-2",3111,0.0175,-0.0456,0.0071,"0.1168","<0.01"," 0.46",0.9486,"<0.01",,,0.9026,0.0006,6.9361,"<0.01"
+"Full sample","Dynamic: BTC Volatility Lags1-2 + GPR Lags0-2",3111,0.0172,-0.0461,0.008,"0.1251","<0.01","0.4224",0.9711,"<0.01",-0.0237,"0.4191",0.9026,0.0006,6.8926,"<0.01"
+"Post-2017","Volatility: No Lag",2117,-0.179,,,"0.02268",,,,,,,0.0252,,,
+"Post-2017","Volatility: 1 Lag",2117,-0.0885,-0.1334,,"0.07861","<0.01",,,,,,0.0324,,,
+"Post-2017","Volatility: 2 Lags",2117,-0.0587,-0.0934,-0.0889,"0.1408","<0.01","0.02544",,,,,0.035,,,
+"Post-2017","Dynamic: BTC Volatility Lag1 + GPR Lags0-2",2117,0.0188,-0.0442,0.0098,"0.1442","<0.01","0.3345",0.9431,"<0.01",,,0.897,0.0007,4.922,"<0.01"
+"Post-2017","Dynamic: BTC Volatility Lags1-2 + GPR Lags0-2",2117,0.019,-0.0435,0.0091,"0.141","<0.01","0.3792",0.922,"<0.01",0.0223,"0.4629",0.897,0.0007,4.928,"<0.01"

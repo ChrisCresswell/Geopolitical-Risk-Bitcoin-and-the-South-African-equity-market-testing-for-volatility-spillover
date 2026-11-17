@@ -1,0 +1,7 @@
+"Measure","Regime","Adjusted R-squared","Residual SE","Restricted R-squared","Full-model R-squared","Delta R-squared","Partial F","Partial F p-value"
+"GPRD","Lower GPR","0.8971","0.0043","0.8968","0.8973","0.0006","3.9457","<0.01"
+"GPRD","Elevated GPR","0.9215","0.0033","0.9211","0.9220","0.0009","2.8669","0.03581"
+"GPRD ACT","Lower GPR","0.9009","0.0043","0.9007","0.9011","0.0003","3.2008","0.02243"
+"GPRD ACT","Elevated GPR","0.9071","0.0036","0.9075","0.9080","0.0005","1.9117","0.1266"
+"GPRD THREAT","Lower GPR","0.9007","0.0042","0.9003","0.9009","0.0006","4.6988","<0.01"
+"GPRD THREAT","Elevated GPR","0.9083","0.0038","0.9076","0.9090","0.0015","3.5952","0.01342"

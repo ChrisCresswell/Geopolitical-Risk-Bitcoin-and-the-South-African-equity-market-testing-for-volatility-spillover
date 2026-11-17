@@ -1,0 +1,11 @@
+"Event_Window","Event_ID","Event_Codes","Measure","Smoothing","Peak_Date","N","Number_of_Specifications","Correlation","BTC_Coefficient","NeweyWest_SE","CI_Lower","CI_Upper","NeweyWest_P_Value","Significant","Coefficient_Sign","Interpretation_Note","Adj_R2","Residual_SE"
+"2014-03-03 to 2014-04-01","GPRD_THREAT_21_1","E28","GPRD_THREAT",21,"2014-03-17",21,1,-0.8181,-0.0395,0.0082,-0.0566,-0.0224,"<0.01","Yes","Negative","This window follows the Mt. Gox collapse; the Bitcoin-volatility spike should not be attributed to Crimea alone.",0.6518,0.0005
+"2014-08-07 to 2014-09-04","GPRD_THREAT_21_2","E29; E30; E31","GPRD_THREAT",21,"2014-08-21",21,1,-0.634,-0.0474,0.0145,-0.0777,-0.0171,"<0.01","Yes","Negative","",0.3705,0.0005
+"2015-11-16 to 2015-12-14","GPRD_21_1; GPRD_ACT_21_1; GPRD_THREAT_21_3","E03; E04","GPRD; GPRD_ACT; GPRD_THREAT",21,"2015-11-30",21,3,0.1616,0.0461,0.0603,-0.0801,0.1723,"0.4541","No","Positive","",-0.0252,0.0018
+"2016-11-29 to 2016-12-30","GPRD_ACT_21_2","E38; E20","GPRD_ACT",21,"2016-12-13",21,1,-0.086,-0.0185,0.0556,-0.1349,0.0978,"0.7423","No","Negative","",-0.0448,0.0008
+"2017-05-24 to 2017-06-22","GPRD_21_2; GPRD_ACT_21_3","E08; E09; E37","GPRD; GPRD_ACT",21,"2017-06-07",21,2,0.5693,0.1585,0.0549,0.0436,0.2733,"<0.01","Yes","Positive","",0.2885,0.0014
+"2019-09-17 to 2019-10-16","GPRD_21_3; GPRD_THREAT_21_4","E10; E11","GPRD; GPRD_THREAT",21,"2019-10-02",21,2,0.1945,0.0994,0.1047,-0.1197,0.3186,"0.3542","No","Positive","",-0.0128,0.0011
+"2023-05-10 to 2023-06-07","GPRD_21_4","E12","GPRD",21,"2023-05-24",21,1,-0.3681,-0.0692,0.0261,-0.1239,-0.0145,"0.01581","Yes","Negative","",0.09,0.0006
+"2025-02-20 to 2025-03-20","GPRD_ACT_21_4","E21; E06","GPRD_ACT",21,"2025-03-06",21,1,0.4609,0.1114,0.0631,-0.0206,0.2434,"0.09347","No","Positive","",0.1709,0.0012
+"2026-03-03 to 2026-03-31","GPRD_21_5; GPRD_ACT_21_5","E07; E13","GPRD; GPRD_ACT",21,"2026-03-17",21,2,-0.1671,-0.0631,0.1094,-0.2922,0.166,"0.5711","No","Negative","",-0.0232,0.0023
+"2026-03-17 to 2026-04-16","GPRD_THREAT_21_5","E13; E32; E33","GPRD_THREAT",21,"2026-03-31",21,1,0.8395,0.5651,0.1011,0.3535,0.7766,"<0.01","Yes","Positive","",0.6892,0.0015

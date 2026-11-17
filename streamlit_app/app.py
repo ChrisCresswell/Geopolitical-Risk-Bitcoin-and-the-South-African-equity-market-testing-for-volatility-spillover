@@ -165,6 +165,31 @@ st.markdown(
         margin-top: 2rem;
       }
       .footer a { color: #245d86 !important; }
+
+      /* Streamlit info/callout panels: avoid dark text on a dark alert background. */
+      [data-testid="stAlert"] {
+        background: #eaf2f8 !important;
+        border: 1px solid #bfd0df !important;
+        color: #243b53 !important;
+      }
+      [data-testid="stAlert"] p,
+      [data-testid="stAlert"] div,
+      [data-testid="stAlert"] span,
+      [data-testid="stAlert"] svg {
+        color: #243b53 !important;
+        fill: #243b53 !important;
+      }
+
+      /* Use a darker, consistent link colour on the light page. */
+      [data-testid="stMain"] a {
+        color: #245d86 !important;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+      [data-testid="stMain"] a:hover {
+        color: #153f60 !important;
+      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -244,12 +269,22 @@ def coefficient_bar(labels, estimates, pvalues, title, x_title):
     fig.add_vline(x=0, line_dash="dash", line_color="#64748b", line_width=1)
     fig.update_traces(marker_color="#315b7d", texttemplate="%{x:.4f}", textposition="outside", cliponaxis=False)
     fig.update_layout(
-        title=title, xaxis_title=x_title, yaxis_title="", height=max(280, 80 * len(df)),
-        margin=dict(l=15, r=55, t=55, b=35), showlegend=False,
-        plot_bgcolor="white", paper_bgcolor="white",
+        template="plotly_white",
+        title=dict(text=title, font=dict(color="#142a40", size=18), x=0, xanchor="left"),
+        xaxis_title=x_title, yaxis_title="", height=max(280, 80 * len(df)),
+        margin=dict(l=15, r=55, t=65, b=45), showlegend=False,
+        plot_bgcolor="#ffffff", paper_bgcolor="#ffffff",
+        font=dict(family="Arial, sans-serif", size=13, color="#2b4258"),
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#e8edf2", zeroline=False)
-    fig.update_yaxes(categoryorder="array", categoryarray=list(reversed(labels)))
+    fig.update_xaxes(
+        showgrid=True, gridcolor="#dce5ee", zeroline=False,
+        tickfont=dict(color="#425b73", size=12),
+        title_font=dict(color="#243b53", size=13),
+    )
+    fig.update_yaxes(
+        categoryorder="array", categoryarray=list(reversed(labels)),
+        tickfont=dict(color="#344d64", size=12),
+    )
     st.plotly_chart(fig, use_container_width=True)
     st.caption("Bars show coefficient estimates; p-values are available on hover. They are not confidence intervals.")
 
@@ -282,10 +317,19 @@ def event_forest_plot(df, estimate_col, lower_col, upper_col, label_col, title, 
         ))
     fig.add_vline(x=0, line_dash="dash", line_color="#64748b", line_width=1)
     fig.update_layout(
-        title=title, xaxis_title=unit, yaxis_title="", height=max(360, 48 * len(plot)),
-        margin=dict(l=20, r=25, t=55, b=45), plot_bgcolor="white", paper_bgcolor="white",
+        template="plotly_white",
+        title=dict(text=title, font=dict(color="#142a40", size=18), x=0, xanchor="left"),
+        xaxis_title=unit, yaxis_title="", height=max(360, 48 * len(plot)),
+        margin=dict(l=20, r=25, t=65, b=55),
+        plot_bgcolor="#ffffff", paper_bgcolor="#ffffff",
+        font=dict(family="Arial, sans-serif", size=13, color="#2b4258"),
     )
-    fig.update_xaxes(showgrid=True, gridcolor="#e8edf2", zeroline=False)
+    fig.update_xaxes(
+        showgrid=True, gridcolor="#dce5ee", zeroline=False,
+        tickfont=dict(color="#425b73", size=12),
+        title_font=dict(color="#243b53", size=13),
+    )
+    fig.update_yaxes(tickfont=dict(color="#344d64", size=12))
     st.plotly_chart(fig, use_container_width=True)
     st.caption("Points are coefficient estimates; whiskers are the 95% Newey–West confidence intervals exported by Script 9.")
 

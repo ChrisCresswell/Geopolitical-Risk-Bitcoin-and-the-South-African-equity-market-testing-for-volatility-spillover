@@ -147,8 +147,32 @@ st.markdown(
       /* Keep controls and tables legible in the forced light presentation. */
       div[data-baseweb="select"] > div {
         background-color: #ffffff !important;
-        border-color: #cbd6e2 !important;
+        border: 1px solid #cbd6e2 !important;
         color: #1b2d40 !important;
+      }
+      [data-testid="stMultiSelect"] [data-baseweb="select"] > div,
+      [data-testid="stMultiSelect"] [data-baseweb="select"] > div > div {
+        background-color: #ffffff !important;
+        color: #1b2d40 !important;
+      }
+      [data-testid="stMultiSelect"] [data-baseweb="tag"] {
+        background-color: #e2edf6 !important;
+        border: 1px solid #bfd0df !important;
+        color: #244f73 !important;
+      }
+      [data-testid="stMultiSelect"] [data-baseweb="tag"] *,
+      [data-testid="stMultiSelect"] input,
+      [data-testid="stMultiSelect"] svg {
+        color: #244f73 !important;
+        fill: #244f73 !important;
+      }
+      [data-baseweb="popover"],
+      [data-baseweb="menu"] {
+        background-color: #ffffff !important;
+        color: #243b53 !important;
+      }
+      [role="option"] {
+        color: #243b53 !important;
       }
       input, textarea {
         color: #1b2d40 !important;
@@ -166,15 +190,39 @@ st.markdown(
       }
       .footer a { color: #245d86 !important; }
 
-      /* Streamlit info/callout panels: avoid dark text on a dark alert background. */
-      [data-testid="stAlert"] {
+      /* Branded callouts use explicit foreground and background colours. */
+      .notice {
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        margin: .8rem 0;
+        line-height: 1.65;
+        font-size: .94rem;
+        border: 1px solid;
+      }
+      .notice p { margin: 0 !important; }
+      .notice-warning {
+        background: #fff4d6 !important;
+        border-color: #e7ca83 !important;
+        color: #674b12 !important;
+      }
+      .notice-warning * { color: #674b12 !important; }
+      .notice-info {
         background: #eaf2f8 !important;
-        border: 1px solid #bfd0df !important;
+        border-color: #bfd0df !important;
         color: #243b53 !important;
       }
-      [data-testid="stAlert"] p,
-      [data-testid="stAlert"] div,
-      [data-testid="stAlert"] span,
+      .notice-info * { color: #243b53 !important; }
+
+      /* Fallback for any standard Streamlit alerts used elsewhere. */
+      [data-testid="stAlert"],
+      [data-testid="stAlert"] > div,
+      [data-testid="stAlert"] [role="alert"],
+      [data-testid="stAlert"] [data-baseweb="notification"] {
+        background: #eaf2f8 !important;
+        color: #243b53 !important;
+        border-color: #bfd0df !important;
+      }
+      [data-testid="stAlert"] *,
       [data-testid="stAlert"] svg {
         color: #243b53 !important;
         fill: #243b53 !important;
@@ -447,10 +495,12 @@ elif page == "Data & volatility modelling":
     st.markdown("**Final-model diagnostics**")
     diag = load_table("egarch_diagnostics.csv")
     show_table(diag, height=200)
-    st.warning(
-        "Diagnostic qualification: the Ljung–Box tests on standardised residuals remain significant for both series, "
+    st.markdown(
+        "<div class='notice notice-warning'><strong>Diagnostic qualification:</strong> "
+        "The Ljung–Box tests on standardised residuals remain significant for both series, "
         "and the Nyblom joint statistics exceed the reported 1% critical value. The squared-residual and ARCH tests "
-        "do not indicate remaining ARCH effects at the 5% level. These issues are retained as model limitations."
+        "do not indicate remaining ARCH effects at the 5% level. These issues are retained as model limitations.</div>",
+        unsafe_allow_html=True,
     )
     image("F10_Standardized_Residuals_Panel.png", "Standardised residuals from the selected EGARCH models.")
     hero_footer()
@@ -590,10 +640,35 @@ elif page == "Regimes & event studies":
             c3.metric("Significant windows", r["Significant_Distinct_Windows"])
         bevents = load_table("btc_j303_events_21day.csv")
         if not bevents.empty:
-            measure_filter = st.multiselect("GPR measures selecting the window", sorted(set("; ".join(bevents["Measure"].astype(str)).replace(" ", "").split(";"))), default=[])
+            available_measures = sorted({
+                token.strip()
+                for value in bevents["Measure"].dropna()
+                for token in str(value).split(";")
+                if token.strip()
+            })
+            measure_filter = st.multiselect(
+                "Filter event windows by GPR measure",
+                available_measures,
+                default=[],
+                key="event_measure_filter",
+            )
             filtered = bevents.copy()
             if measure_filter:
-                filtered = filtered[filtered["Measure"].apply(lambda s: any(m in str(s).replace(" ", "") for m in measure_filter))]
+                selected_measures = set(measure_filter)
+                filtered = filtered[
+                    filtered["Measure"].apply(
+                        lambda value: bool(
+                            selected_measures.intersection(
+                                token.strip() for token in str(value).split(";") if token.strip()
+                            )
+                        )
+                    )
+                ]
+            st.caption(
+                "Leave the selection empty to show all windows. Choose one or more measures to keep windows "
+                "associated with at least one selected measure; selecting all measures is equivalent to showing all."
+            )
+            st.caption(f"Showing {len(filtered)} of {len(bevents)} event windows.")
             event_forest_plot(filtered, "BTC_Coefficient", "CI_Lower", "CI_Upper", "Event_Window", "BTC–J303 coefficients across distinct 21-observation windows", "Bitcoin-volatility coefficient")
             show_table(filtered[["Event_Window", "Peak_Date", "Measure", "N", "Correlation", "BTC_Coefficient", "CI_Lower", "CI_Upper", "NeweyWest_P_Value", "Significant", "Interpretation_Note"]], height=360)
             selected_window = st.selectbox("Inspect an event window", filtered["Event_Window"].tolist(), key="event_detail") if not filtered.empty else None
@@ -650,5 +725,9 @@ else:  # Methodology & limitations
         "For further information on the methodology, statistical analysis and implementation of this research, "
         f"refer to the [R source code and analysis scripts on GitHub]({GITHUB_URL})."
     )
-    st.info("The public application package contains selected Script 9 result tables and thesis figures. The original daily workbook containing Bloomberg-derived financial data is deliberately excluded.")
+    st.markdown(
+        "<div class='notice notice-info'>The public application package contains selected Script 9 result tables and thesis figures. "
+        "The original daily workbook containing Bloomberg-derived financial data is deliberately excluded.</div>",
+        unsafe_allow_html=True,
+    )
     hero_footer()

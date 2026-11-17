@@ -166,13 +166,38 @@ st.markdown(
         color: #244f73 !important;
         fill: #244f73 !important;
       }
+      /* Dropdown menus: restore a light list with dark, readable options. */
       [data-baseweb="popover"],
-      [data-baseweb="menu"] {
+      [data-baseweb="popover"] > div,
+      [data-baseweb="menu"],
+      [data-baseweb="menu"] ul,
+      [role="listbox"] {
         background-color: #ffffff !important;
         color: #243b53 !important;
       }
-      [role="option"] {
+      [data-baseweb="menu"] li,
+      [data-baseweb="menu"] [role="option"],
+      [role="listbox"] [role="option"] {
+        background-color: #ffffff !important;
         color: #243b53 !important;
+      }
+      [data-baseweb="menu"] li *,
+      [data-baseweb="menu"] [role="option"] *,
+      [role="listbox"] [role="option"] * {
+        color: #243b53 !important;
+      }
+      [data-baseweb="menu"] [role="option"]:hover,
+      [role="listbox"] [role="option"]:hover,
+      [data-baseweb="menu"] [role="option"][aria-selected="true"],
+      [role="listbox"] [role="option"][aria-selected="true"] {
+        background-color: #eaf2f8 !important;
+        color: #142a40 !important;
+      }
+      [data-baseweb="menu"] [role="option"]:hover *,
+      [role="listbox"] [role="option"]:hover *,
+      [data-baseweb="menu"] [role="option"][aria-selected="true"] *,
+      [role="listbox"] [role="option"][aria-selected="true"] * {
+        color: #142a40 !important;
       }
       input, textarea {
         color: #1b2d40 !important;
